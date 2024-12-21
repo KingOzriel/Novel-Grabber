@@ -27,4 +27,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Novel-Grabber
-          path: target/Novel-Grabber-*.jar
+          path: target/novel-grabber-*-jar-with-dependencies.jar
+
