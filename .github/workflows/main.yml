@@ -1,0 +1,30 @@
+name: Build Novel-Grabber
+
+on:
+  push:
+    branches:
+      - main # Or your default branch name
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17' # Or whichever version Novel-Grabber requires
+          distribution: 'adopt'
+
+      - name: Build with Maven
+        run: mvn clean install -DskipTests
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Novel-Grabber
+          path: target/Novel-Grabber-*.jar
